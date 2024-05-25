@@ -21,6 +21,8 @@ escape_radius = 1e+10  # 복소수 크기가 escape_radius를 벗어나면 발�
 
 clicked = False
 
+
+
 def on_click(event):
     global clicked, x0, y0, eps, eps_y, zoom_step
     if event.button == 1 and event.inaxes:  # Only respond to left mouse clicks
@@ -51,7 +53,7 @@ def seconds_to_hms(seconds):
     return f"{hours:02} hours : {minutes:02} minutes : {seconds:09.6f} seconds"
 
 prevData = []
-
+prevData.append([x0, y0, eps, eps_y])
 fig, ax = plt.subplots()
 cid = fig.canvas.mpl_connect('button_press_event', on_click)
 
