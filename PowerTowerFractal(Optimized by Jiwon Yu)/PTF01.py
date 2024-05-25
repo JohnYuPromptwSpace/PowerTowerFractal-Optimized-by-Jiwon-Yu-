@@ -16,7 +16,7 @@ n = 500  # 화소수 조절을 위한 parameter (3840:4K, 1920:Full HD)
 nx, ny = n, int(n * (9 / 16))  # nx, ny: x, y축 화소수
 
 # Parameters - tetration 계산 관련
-max_iter = 500  # 최대 몇 층까지 계산할 것인지를 정함. max_iter층 만큼 계산했는데 복소수 크기가 escape_radius를 벗어나지 않으면 수렴한 것으로 처리.
+max_iter = 1000  # 최대 몇 층까지 계산할 것인지를 정함. max_iter층 만큼 계산했는데 복소수 크기가 escape_radius를 벗어나지 않으면 수렴한 것으로 처리.
 escape_radius = 1e+10  # 복소수 크기가 escape_radius를 벗어나면 발산한 것으로 처리함.
 
 clicked = False
@@ -32,7 +32,7 @@ def on_click(event):
         eps_y = eps * (9/16)
         clicked = True
     elif event.button == 3 and event.inaxes:
-        print(f"Moving back to: x={prevData[0]}, y={prevData[1]}, Zooming out {zoom_step}x")
+        print(f"Moving back to: x={prevData[-1][0]}, y={prevData[-1][1]}, Zooming out {zoom_step}x")
         x0, y0, eps, eps_y = prevData.pop()
         clicked = True
 
