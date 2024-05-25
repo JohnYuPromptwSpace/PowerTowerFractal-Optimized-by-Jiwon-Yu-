@@ -22,7 +22,6 @@ escape_radius = 1e+10  # 복소수 크기가 escape_radius를 벗어나면 발�
 clicked = False
 
 
-
 def on_click(event):
     global clicked, x0, y0, eps, eps_y, zoom_step
     if event.button == 1 and event.inaxes:  # Only respond to left mouse clicks
@@ -32,12 +31,14 @@ def on_click(event):
         eps /= zoom_step
         eps_y = eps * (9/16)
         clicked = True
-    elif event.button == 2:
-        sys.exit()
     elif event.button == 3 and event.inaxes:
         print(f"Moving back to: x={prevData[0]}, y={prevData[1]}, Zooming out {zoom_step}x")
         x0, y0, eps, eps_y = prevData.pop()
         clicked = True
+
+def on_close(event):
+    print("Close button clicked. Exiting...")
+    sys.exit()
 
 def seconds_to_hms(seconds):
     # Create a timedelta object from the given seconds
@@ -56,6 +57,7 @@ prevData = []
 prevData.append([x0, y0, eps, eps_y])
 fig, ax = plt.subplots()
 cid = fig.canvas.mpl_connect('button_press_event', on_click)
+cid_close = fig.canvas.mpl_connect('close_event', on_close)
 
 @jit(fastmath = True, nopython=True, parallel=True)
 def compute_tetration_divergence(c, nx, ny, max_iter, escape_radius):
