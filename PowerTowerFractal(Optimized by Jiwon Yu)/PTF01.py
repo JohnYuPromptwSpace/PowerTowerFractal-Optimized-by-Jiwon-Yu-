@@ -4,6 +4,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from numba import jit, prange
 import time
 from datetime import timedelta
+import sys
 
 # Parameters - plot 영역 설정 관련
 zoom_step = 1000 # 한 번에 확대할 배율
@@ -29,6 +30,8 @@ def on_click(event):
         eps /= zoom_step
         eps_y = eps * (9/16)
         clicked = True
+    elif event.button == 2:
+        sys.exit()
     elif event.button == 3 and event.inaxes:
         print(f"Moving back to: x={prevData[0]}, y={prevData[1]}, Zooming out {zoom_step}x")
         x0, y0, eps, eps_y = prevData.pop()
