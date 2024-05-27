@@ -10,7 +10,10 @@ def compute_tetration_divergence(c, nx, ny, max_iter, escape_radius):
 ##### 위와 같이 메세지가 뜰텐데 무시하세요 #####
 
 이 코드는 DMT Park의 Power Tower Fractal 코드에 기능을 추가하고 죄적화한 것입니다.
+
 추가 기능은 아래와 같습니다.
+
+<추가 기능>
 
 좌클릭: 클릭한 곳 확대, 클릭 후 기다리면 확대됩니다.
 우클릭: 전으로가기, 클릭을 하면 이전에 봤던 곳으로 가집니다.
